@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class CollectBlips : MonoBehaviour
 {
+    [Header("Scripts")]
+    [SerializeField] private UIScores uiScore = null;
+
     [Header("Objects")]
     [SerializeField] private Sprite collectSprite = null;
 
     [Header("Variables")]
     [SerializeField] private float range = 1f;
     [SerializeField] private LayerMask collectablesLayer;
+
+    private int pointMultiplier = 1;
 
     private Collider2D touchCollider = null;
     private Collider2D[] collectables = null;
@@ -25,11 +30,13 @@ public class CollectBlips : MonoBehaviour
                 //If it touches any of the collectables
                 if (touchCollider)
                 {
-                    touchCollider.gameObject.SetActive(false);
+                    Destroy(touchCollider.gameObject);
+                    uiScore.IncreasePoints(pointMultiplier);
                 }                
             }
         }
 
+        //PC Debug
         if (Input.GetKey(KeyCode.Mouse0))
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -40,7 +47,8 @@ public class CollectBlips : MonoBehaviour
             //If it touches any of the collectables
             if (touchCollider)
             {
-                touchCollider.gameObject.SetActive(false);
+                Destroy(touchCollider.gameObject);
+                uiScore.IncreasePoints(pointMultiplier);
             }
         }
     }
