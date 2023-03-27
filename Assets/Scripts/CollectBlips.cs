@@ -14,7 +14,7 @@ public class CollectBlips : MonoBehaviour
     [SerializeField] private float range = 1f;
     [SerializeField] private LayerMask collectablesLayer;
 
-    private int pointMultiplier = 1;
+    public int pointMultiplier = 1;
 
     private Collider2D touchCollider = null;
     private Collider2D[] collectables = null;
@@ -30,8 +30,10 @@ public class CollectBlips : MonoBehaviour
                 //If it touches any of the collectables
                 if (touchCollider)
                 {
+                    int points = touchCollider.gameObject.GetComponent<BlipDataHolder>().blipData.pointValue;
+
                     Destroy(touchCollider.gameObject);
-                    uiScore.IncreasePoints(pointMultiplier);
+                    uiScore.IncreasePoints(points * pointMultiplier);
                 }                
             }
         }
@@ -47,8 +49,10 @@ public class CollectBlips : MonoBehaviour
             //If it touches any of the collectables
             if (touchCollider)
             {
+                int points = touchCollider.gameObject.GetComponent<BlipDataHolder>().blipData.pointValue;
+
                 Destroy(touchCollider.gameObject);
-                uiScore.IncreasePoints(pointMultiplier);
+                uiScore.IncreasePoints(points * pointMultiplier);
             }
         }
     }

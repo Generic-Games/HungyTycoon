@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5412279616619455508}
   - component: {fileID: 6676768936637207509}
   - component: {fileID: 8978664337868031861}
+  - component: {fileID: 3240928999929331981}
   m_Layer: 6
   m_Name: Blip_Banana
   m_TagString: Untagged
@@ -101,3 +102,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 5.12
+--- !u!114 &3240928999929331981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2704271677013851620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac4c44b6c5d91b4448095739d8a7dd5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blipData: {fileID: 11400000, guid: 24a9aff9194671546be11728d5d508c7, type: 2}
