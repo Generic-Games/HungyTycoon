@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class BlipSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] blips = null;
-
-    [SerializeField] private float spawnDelay = 1f;
+    [SerializeField] private BlipSpawnManager spawnManager = null;
+    [SerializeField] private SO_Blips blips = null;
 
     private void Start()
     {
@@ -17,9 +16,12 @@ public class BlipSpawner : MonoBehaviour
     {
         Vector3 RandomPos = new Vector3(Random.Range(0, Screen.width), Random.Range(0, Screen.height), -Camera.main.transform.position.z);
 
-        Instantiate(blips[Random.Range(0, blips.Length)], Camera.main.ScreenToWorldPoint(RandomPos), Quaternion.identity, transform);
+        if (blips.spawnLevel <= spawnManager.currentSpawnLevel)
+        {
+            Instantiate(blips.prefab, Camera.main.ScreenToWorldPoint(RandomPos), Quaternion.identity, transform);
+        }
 
-        yield return new WaitForSeconds(spawnDelay);
+        yield return new WaitForSeconds(blips.spawnTime);
         StartCoroutine("SpawnBlips");
     }
 }
